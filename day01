@@ -1,0 +1,10 @@
+梳理各namespace的作用
+1. mnt namespace(mount)  提供磁盘挂载点和文件系统的隔离能力
+2. ipc namespace(inter-Process Communication) 提供进程间通信的隔离能力
+3. uts namespcae(UNIX Timesharing System) 提供主机名隔离能力
+4. PID namespace(Process Identification) 提供进程隔离能力
+5. Net namespace(network) 提供网络隔离能力
+6. user namespace(user) 提供用户隔离能力
+7. time namespace 提供时间隔离能力
+8. Syslog namespace 提供syslog隔离能力
+9. Cgroup namespace  提供进程所属的控制组的身份隔离
