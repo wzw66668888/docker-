@@ -1,4 +1,4 @@
-梳理各namespace的作用
+一、梳理各namespace的作用
 1. mnt namespace(mount)  提供磁盘挂载点和文件系统的隔离能力
 2. ipc namespace(inter-Process Communication) 提供进程间通信的隔离能力
 3. uts namespcae(UNIX Timesharing System) 提供主机名隔离能力
@@ -8,3 +8,58 @@
 7. time namespace 提供时间隔离能力
 8. Syslog namespace 提供syslog隔离能力
 9. Cgroup namespace  提供进程所属的控制组的身份隔离
+
+
+二、使用apt/yum/二进制安装指定版本的docker
+apt 源安装
+1.卸载之前安装的docker
+apt-get remove docker docker-engine docker.io containerd runc
+2.安装docker的依赖包
+apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+3.添加信任 Docker的GPG 公钥
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+4.添加国内软件仓库
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+5.更新镜像源并安装docker
+apt-get update
+apt-get install docker-ce
+二进制安装docker：
+1.从docker官网下载docker-20.10.19.tgz压缩包并上传要安装docker的机器
+tar xf  docker-20.10.19.tgz  
+cp docker/*  /usr/bin
+2.需要把之前用apt装的docker.service  containerd.service和docker.socket copy到安装docker的机器的/lib/systemd/system下
+3.添加docker组
+groupadd docker
+4.启动containerd、docker.socket dcoker
+systemctl enable containerd/docker.socket/dcoker --now
+
+
+三、熟练使用docker数据卷
+创建volume
+docker volume create nginx-data; 查看docker volume ls
+启动nginx容器并把nginx-data 卷映射到容器中
+docker run -itd -p80:80 -v nginx-data:/data nginx:latest
+进入容器并创建目录和文件
+docker exec -it 1c0a1e2a05c0 bash
+mkdir -p /data/log
+echo "111" > /data/log/access.log
+在宿主机可查看刚才在容器中创建的文件
+cat /var/lib/docker/volumes/nginx-data/_data/logs/access.log
+删除容器文件依然存在
+docker rm -fv 1c0a1e2a05c0
+ls /var/lib/docker/volumes/nginx-data/_data/logs
+把宿主机目录和配置文件(只读权限)映射到容器中
+docker run -itd --name web -p 80:80 -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro -v /data/testapp/:/usr/share/nginx/html/testapp nginx:latest
+
+
+四、熟练使用docker的bridge和container模式网络
+bridge网络 
+docker run -d -p 80:80 --net=bridge nginx:1.23.1-alpine
+container 网络 
+先启动nginx 容器默认桥接
+docker run -itd --name nginx-container -p 80:80 --network=bridge nginx:1.23.1-alpine
+启动php容器使用nginx-container的容器网络(共享nginx-container网络)
+docker run -itd --name php-container --network=container:nginx-container php:7.4.30-fpm-alpine
+
