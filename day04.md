@@ -10,27 +10,28 @@
 
  2.登录jenkens web页面系统管理------>添加节点
 
-![image-20221116195316526](C:\Users\wzw18\Desktop\day03 图片\image-20221116195316526.png)
+![image-20221116195316526](https://user-images.githubusercontent.com/82318011/202590417-fe58f6f0-5431-4572-b1ac-ceeeab0c65b4.png)
 
  3.添加节点信息，远程工作目录要与master节点一致
 
-![image-20221117102250315](C:\Users\wzw18\Desktop\day03 图片\image-20221117102250315.png)
+![image-20221116200331999](https://user-images.githubusercontent.com/82318011/202590432-fe6cf692-ed98-4227-9bb6-657beafd8e42.png)
+
 
 4用username with password 方式加入jenins集群
 
-![image-20221116200331999](C:\Users\wzw18\Desktop\day03 图片\image-20221116200331999.png)
+![image-20221117101459136](https://user-images.githubusercontent.com/82318011/202590451-0983e7f8-295d-4d7c-abe4-764a8ed265cf.png)
 
-![image-20221116200351996](C:\Users\wzw18\Desktop\day03 图片\image-20221116200351996.png)
+![image-20221116200351996](https://user-images.githubusercontent.com/82318011/202590455-207c5ad6-0308-41e8-ad0e-b626f763e8f2.png)
+
 
 二、基于jenkins视图对jenkins job进行分类
 
 jenkins视图分为列表视图(对项目进行分类项目)、包括全局视图(所有视图)和我的视图(用户登录后看到自己所在项目的视图，即有权限看到的视图)
 
+![image-20221117101520612](https://user-images.githubusercontent.com/82318011/202590476-1e78b071-e210-4243-90e4-9371517fdb2d.png)
 可以用正则匹配项目视图
+![image-20221117101520612](https://user-images.githubusercontent.com/82318011/202590526-a53c2084-b900-4447-baee-47bbfdc29a29.png)
 
-![image-20221117101459136](C:\Users\wzw18\Desktop\day03 图片\image-20221117101459136.png)
-
-![image-20221117101520612](C:\Users\wzw18\Desktop\day03 图片\image-20221117101520612.png)
 
 三.总结jenkins pipline基本语法
 
