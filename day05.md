@@ -297,10 +297,10 @@ git add . && git commit -m "add  jenkinsfile" && git pull
 ```
 
 登录jenkens web页面创建任务配置里将Pipeline script 改为Pipeline script from  scm，点击立即构建
+![image-20221116200331999](https://user-images.githubusercontent.com/82318011/203564297-aefe343f-ade9-4e50-89ec-a80f53d9f914.png)
 
-![image-20221122124241700](C:\Users\wzw18\Desktop\day03 图片\image-20221116200331999.png)
 
-![image-20221122124524288](C:\Users\wzw18\Desktop\day03 图片\image-20221122124524288.png)
+![image-20221122124524288](https://user-images.githubusercontent.com/82318011/203564346-c8992dae-11cb-4487-98ba-5caee2d8f274.png)
 
 
 
@@ -707,12 +707,11 @@ curl -u magedu:123456 -X PUT http://169.254.90.140:9200/_cluster/settings -H 'Co
 
 在谷歌浏览器中设置———>扩展程序———>谷歌商店搜索elastic head———>点击添加至chrome
 
-![image-20221123144424473](C:\Users\wzw18\AppData\Roaming\Typora\typora-user-images\image-20221123144424473.png)
+![image-20221123144424473](https://user-images.githubusercontent.com/82318011/203564995-ba533391-6bf9-4798-bb93-7c4c03fa40bd.png)
 
-![image-20221123144514364](C:\Users\wzw18\Desktop\day03 图片\image-20221123144514364.png)
+![image-20221123144514364](https://user-images.githubusercontent.com/82318011/203565063-c6a0285b-75f5-4937-a2fe-fa5b770ab6ef.png)
 
-![image-20221123144611848](C:\Users\wzw18\Desktop\day03 图片\image-20221123144611848.png)
-
+![image-20221123144611848](https://user-images.githubusercontent.com/82318011/203565101-454970bf-3c1b-499f-9d25-6af41b898747.png)
 
 
 ##### 六.安装logstash收集不同类型的系统日志并写入到ES 的不同index
@@ -723,7 +722,6 @@ dpkg -i logstash-8.5.1-amd64.deb  #安装deb包
 
 ```shell
 cd  /etc/logstash/conf.d   vim log-file.conf 
-
 input{
   file {
     path => "/var/log/syslog"
@@ -731,6 +729,12 @@ input{
     start_position => "beginning"
     type => "syslog"
   }
+  file {
+    path => "/var/log/auth.log"
+    stat_interval => "1"
+    start_position => "beginning"
+    type => "authlog"
+}
 }
 
 
@@ -738,13 +742,22 @@ output {
   if [type] == "syslog"{
   elasticsearch {
     hosts => ["169.254.90.140:9200"]
-    index => "magedu-logstash-test1-%{+yyyy.MM.dd}"
+    index => "magedu-app1-syslog-%{+yyyy.MM.dd}"
+    user => "magedu"
+    password => "123456"
+  }
+}
+  if [type] == "authlog"{
+  elasticsearch {
+    hosts => ["169.254.90.140:9200"]
+    index => "magedu-app1-authlog-%{+yyyy.MM.dd}"
     user => "magedu"
     password => "123456"
   }
 }
 }
-/usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/log-file.conf
+
+systemctl restart logstash.service
 ```
 
 
@@ -780,11 +793,11 @@ tail -f /var/log/kibana/kibana.log
 
 在前端找到Stack Management——>数据视图——>创建数据视图
 
-![image-20221123190257643](C:\Users\wzw18\Desktop\day03 图片\image-20221123190257643.png)
+![image-20221123190257643](https://user-images.githubusercontent.com/82318011/203565395-f8aba470-a094-44fc-b575-3b311eb556c0.png)
 
 前端点击discovery就可以看到es集群数据
 
-![image-20221123190940871](C:\Users\wzw18\Desktop\day03 图片\image-20221123190940871.png)
+
 
 #####  扩展:了解heartbeat和metricbeat的使用
 
@@ -841,7 +854,8 @@ kibana验证数据：
 
 Observability-->监测:
 
-![image-20221123213535086](C:\Users\wzw18\Desktop\day03 图片\image-20221123213535086.png)
+![image-20221123213535086](https://user-images.githubusercontent.com/82318011/203565769-3816b1dc-82fb-4952-a63d-4993b495a784.png)
+
 
 metricbeat：收集指标数据,包括系统运行状态、CPU内存利用率，还可以收集nginx、redis、haproxy等服务的指标数据。
 
@@ -866,6 +880,6 @@ systemctl enable metricbeat.service  --now
 
 登录kibana web页面——>observability
 
-![image-20221123204406459](C:\Users\wzw18\Desktop\day03 图片\image-20221123204406459.png)
+![image-20221123204406459](https://user-images.githubusercontent.com/82318011/203566045-d2782648-9d8f-4fd7-aa82-93e977e1cd65.png)
 
-![image-20221123204512702](C:\Users\wzw18\AppData\Roaming\Typora\typora-user-images\image-20221123204512702.png)
+![image-20221123204512702](https://user-images.githubusercontent.com/82318011/203566180-4db95d5f-cd01-4fca-acf9-f89ad9f483fc.png)
