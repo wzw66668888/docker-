@@ -137,8 +137,8 @@ output {
 systemctl restart logstash.service   重启logstash 
 
 登录kibana web页面创建并添加数据视图
+![image-20221129151333367](https://user-images.githubusercontent.com/82318011/205439975-7327c242-3f68-4ac6-9e3f-3e96b7456c4c.png)
 
-![Uploading image-20221129151333367.png…]()
 
 
 **二、基于logstash收集json格式的nginx访问日志**
