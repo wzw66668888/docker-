@@ -138,7 +138,8 @@ systemctl restart logstash.service   重启logstash
 
 登录kibana web页面创建并添加数据视图
 
-![image-20221129151333367](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221129151333367.png)
+![Uploading image-20221129151333367.png…]()
+
 
 **二、基于logstash收集json格式的nginx访问日志**
 
@@ -197,7 +198,8 @@ systemctl restart logstash.service   重启logstash
 
 登录kibana web页面创建并添加数据视图
 
-![屏幕截图 2022-11-29 180508](C:\Users\wzw18\Desktop\极客时间\作业\图片\屏幕截图 2022-11-29 180508.png)
+<img width="935" alt="屏幕截图 2022-11-29 180508" src="https://user-images.githubusercontent.com/82318011/205439669-19888b97-6569-4329-977e-b3ff064ee4ce.png">
+
 
 **三、基于logstash收集java日志并实现多行合并**
 
@@ -506,7 +508,8 @@ reboot 重启确保参数生效
 
 9.登录es和logstash web页面验证
 
-![屏幕截图 2022-12-02 125743](C:\Users\wzw18\Desktop\屏幕截图 2022-12-02 125743.png)
+<img width="931" alt="屏幕截图 2022-12-02 125743" src="https://user-images.githubusercontent.com/82318011/205439826-8cfa54bb-89a3-4731-af6e-e71e46355c35.png">
+
 
 **扩展**
     **1.大型的日志收集案例: filebeat-->logstash-->Redis<--logstash-->elasticsearch**
@@ -785,7 +788,8 @@ output {
 
    systemctl restart logstash  重启logstash  登录数据库验证数据是否写入
 
-![屏幕截图 2022-12-01 222646](C:\Users\wzw18\Desktop\屏幕截图 2022-12-01 222646.png)
+<img width="911" alt="屏幕截图 2022-12-01 222646" src="https://user-images.githubusercontent.com/82318011/205439845-5841e232-01ca-49c9-8f07-84338ecdc06c.png">
+
 
  **3.地图显示客户端IP城市**
 
@@ -929,4 +933,5 @@ echo "nc test" | nc 169.254.90.141 9889
 ```
 
 登录es 和kibana web页面验证
+<img width="931" alt="屏幕截图 2022-12-02 125743" src="https://user-images.githubusercontent.com/82318011/205439775-950dbf15-3f0c-4cd0-9dff-e16d260af66b.png">
 
