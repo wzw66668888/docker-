@@ -45,9 +45,7 @@ docker-compose up -d  拉起prometheus-server、node-exporter、grafana镜像
 ```
 
 到prometheus前端验证
-
-![image-20221206190932797](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221206190932797.png)
-
+![1](https://user-images.githubusercontent.com/82318011/206614370-8dad7f1d-21ba-41f2-ad65-7d4d1b86f272.png)
 
 
 **三.基于docker或二进制部署node-exporter，并通过prometheus收集node-exporter指标数据**
@@ -116,7 +114,6 @@ systemctl daemon-reload &&  systemctl enable node_exporter.service --now
 
 到前端验证node_exporter 页面
 
-![image-20221207174903019](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221207174903019.png)
 
 ###### **3.prometheus-server节点添加已安装node_exporter 的节点信息，收集节点指标数据**
 
@@ -133,9 +130,7 @@ systemctl restart prometheus.service
 ```
 
 到prometheus前端验证
-
-![image-20221207175016169](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221207175016169.png)
-
+![2](https://user-images.githubusercontent.com/82318011/206614878-c322576e-0f3a-4548-acec-2caf55485bda.png)
 
 
 **四.安装grafana并添加prometheus数据源，导入模板可以图形显示指标数据**
@@ -169,8 +164,7 @@ systemctl enable grafana-server.service --now
 导入模板有两种方式用模板id直接导入(要求grafana可以连接公网) Dashboards-->import-->模板id 11074 
 
 第二种官网点击dashboard-Data Source搜索prometheus选择模板下载，Dashboards-->import---->upload json file 导入
-
-![image-20221207230221548](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221207230221548.png)
+![3](https://user-images.githubusercontent.com/82318011/206614958-e3e0c286-2b4c-4b5c-baa7-cf27402fdb79.png)
 
 
 
@@ -386,9 +380,11 @@ vim  /apps/prometheus/prometheus.yml
 
 前端验证prometheus targets状态
 
-![image-20221209102622507](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221209102622507.png)
+![4](https://user-images.githubusercontent.com/82318011/206615065-4d24a042-a037-4166-9af7-0d0a45589a40.png)
 
-![image-20221209102644414](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221209102644414.png)
+![5](https://user-images.githubusercontent.com/82318011/206615077-3f84df22-52b9-47fe-be3e-a48c83f7444f.png)
+
+
 
 ###### 4.配置prometheus-server通过联邦节点收集被监控节点指标数据
 
@@ -424,12 +420,11 @@ curl -X POST http://172.31.1.101:9090/-/reload  #不重启刷新prometheus配置
 ```
 
 5.登录prometheus web页面验证通过联邦节点收集的node-exporter指标数据
+![6](https://user-images.githubusercontent.com/82318011/206615124-b4e40fe4-ab1d-442b-8e9c-722aa6055440.png)
 
-![image-20221209103413513](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221209103413513.png)
 
 6.登录grafana页面查看监控页面
-
-![image-20221209103539184](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221209103539184.png)
+![7](https://user-images.githubusercontent.com/82318011/206615166-c7b6db9b-b4da-4bb3-9518-f2820842381a.png)
 
 
 
@@ -549,11 +544,12 @@ bash memory_monitor.sh
 ```
 
 登录pushgateway验证
+![8](https://user-images.githubusercontent.com/82318011/206615235-7dc61649-adbc-4991-b00f-832337217fc1.png)
 
-![image-20221208180221243](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221208180221243.png)
+![10](https://user-images.githubusercontent.com/82318011/206615302-d44b582d-197e-4ca2-a2cf-a9ab06a71e2f.png)
 
 登录prometheus验证
+![9](https://user-images.githubusercontent.com/82318011/206615271-d0274038-2338-41c0-b421-4ae8e232aff5.png)
 
-![image-20221208180408011](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221208180408011.png)
 
-![image-20221208184550413](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221208184550413.png)
+
