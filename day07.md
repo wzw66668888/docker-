@@ -546,10 +546,10 @@ bash memory_monitor.sh
 登录pushgateway验证
 ![8](https://user-images.githubusercontent.com/82318011/206615235-7dc61649-adbc-4991-b00f-832337217fc1.png)
 
-![10](https://user-images.githubusercontent.com/82318011/206615302-d44b582d-197e-4ca2-a2cf-a9ab06a71e2f.png)
 
 登录prometheus验证
 ![9](https://user-images.githubusercontent.com/82318011/206615271-d0274038-2338-41c0-b421-4ae8e232aff5.png)
 
+![10](https://user-images.githubusercontent.com/82318011/206615721-e7dea846-edbe-4e82-af70-aed21910ee78.png)
 
 
