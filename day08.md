@@ -386,7 +386,8 @@ python3
 >>> agent.start()  #启动agent并到skywalking前端页面验证是否python-app 服务
 ```
 
-![image-20221216141059270](C:\Users\wzw18\Desktop\极客时间\作业\图片\image-20221216141059270.png)
+![image-20221216141059270](https://user-images.githubusercontent.com/82318011/208226039-3c6766ad-e958-464d-a6ac-eb05fe28fbcf.png)
+
 
 ```shell
 mkdir /apps/  && cd /apps
